@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <map>
+
+using namespace std;
+
+
+int main() {
+	int L, P, V;
+	int cnt =0; int ans;	//cnt : case의 번호를 매기기 위한 변수
+	
+	while(1) {
+		cin >> L >> P >> V;
+		if (L==0 && P==0 && V==0){ //while문 탈출 조건
+			break;
+		}
+		cnt++;
+		if (V%P > L){ //남은 일 수가 사용가능보다 많을 때
+			ans = (V/P)*L + L;
+		}
+		else {
+			ans = (V/P)*L + (V%P); //남은 일을 풀로 다 태울때
+		}
+		printf("Case %d: %d\n", cnt, ans); //format 출력
+	}
+	return 0;
+}
