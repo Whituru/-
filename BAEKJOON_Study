@@ -1,0 +1,53 @@
+#1439 뒤집기
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <map>
+
+using namespace std;
+
+int main() {	
+	ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+	int N, S, R;
+	cin >> N >> S >> R;
+
+	int Damaged[12]; //기본으로 한개 들고옴
+	fill_n(Damaged, 12, 1);
+	int tmp;
+	for (int i=1; i<= S; i++) {
+		cin >> tmp;
+		Damaged[tmp]--; //안들고오면 하나깜
+	}
+	for (int i=1; i<= R; i++) {
+		cin >> tmp;
+		Damaged[tmp]++; //더 들고오면 하나 추가
+	}
+	
+	for (int i=1; i<=N; i++) {
+		if(Damaged[i] == 2) { // 더 있는 친구
+			if(Damaged[i-1] == 0) { // 왼쪽 부족
+				Damaged[i-1]++; 
+				Damaged[i]--;
+				continue;
+			}
+			else if (Damaged[i+1] == 0){ //오른쪽 부족
+				Damaged[i+1]++; 
+				Damaged[i]--;
+			}
+		}
+	}
+	
+	int cnt=0;
+	for (int i=1; i<=N; i++) {
+		if (Damaged[i] == 0) {
+			cnt++;
+		}
+	}
+	cout << cnt << endl;
+	return 0;
+}
+
+
