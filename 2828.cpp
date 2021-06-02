@@ -12,31 +12,39 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
 	
-	int T;
-	cin >> T;
 	
-	int A = 300; int B = 60; int C = 10;
-	int cnt1=0; int cnt2=0; int cnt3=0; 
+	int N, M;
+	cin >> N >> M;
+	int J;
+	cin >> J;
 	
-	if(T/A >0) {
-		cnt1 += T/A;
-		T = T%A;
-	}
-	if(T/B>0) {
-		cnt2 += T/B;
-		T = T%B;
-	}
-	if(T/C>0) {
-		cnt3 += T/C;
-		T = T%B;
-	}
-	if( T >0) {
-		cout << -1 << endl;
-	}
-	else {
-		printf("%d %d %d\n", cnt1, cnt2, cnt3);
-	}
+	int apple[20];
 	
+	int start = 1;
+	int end = M;
+	int move;
+	int cnt=0;
+	for(int i=0; i<J; i++) {
+		cin >> apple[i];
+		if( start<=apple[i] && apple[i] <= end ) {
+			cnt += 0; //이동의 필요가 없음
+		}
+		else {
+			if(apple[i] < start) {
+				move = start - apple[i];
+				start -= move;
+				end -= move;
+				cnt += move;
+			}
+			else if(apple[i] > end) {
+				move = apple[i] - end;
+				start += move;
+				end += move;
+				cnt+=move;
+			}
+		}
+	}
+	cout << cnt << endl;
 	
 	
 	return 0;	
