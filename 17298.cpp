@@ -15,13 +15,16 @@ int main() {
 	
 	int N;
 	cin >> N;
-	int arr[1000000];
+	int arr[1000001];
 	int a;
 	
 	
-	for(int i=0; i<N; i++)
+	for(int i=1; i<=N; i++)
 	{
 		cin >> arr[i];
-		
 	}	
+	
+	for(int i=1; i<=N; i++) {
+		
+	}
 }

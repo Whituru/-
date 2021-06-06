@@ -7,48 +7,76 @@
 
 using namespace std;
 
-bool compare(int a, int b) {
-		return a<b; //오름차순
-}
+
 int main() {	
 	ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 	
-	
-	int arr[14];
 	int N;
-	int num; //수의 자릿수
-	int A[7],B[7];
+	
 	while(1){
 		cin >> N;
 		if(N ==0){
 			break;
 		}
+		
+		
+		vector <int> v;
+		
+		int zero_cnt=0;
+		int k;
 		for(int i=0; i<N; i++) {
-			cin >> arr[i];
-		}
-		sort(arr, arr+N, compare);	//오름차순
-		num = (N+1)/2;
-		int j=0;
-		for(int i=0; i<num; i+=2) {
-			A[j] = arr[i];
-			j++;
+			cin >> k;
+			v.push_back(k);
+			
+			if(k==0) {
+				zero_cnt++;
+			}
 		}
 		
-		j=0;
-		for(int i=1; i<num; i+=2) {
-			B[j] = arr[i];
-			j++;
+		sort(v.begin(), v.end());	//오름차순
+		
+		int sum=0;
+		
+		if(zero_cnt == 1 && v.size()%2==0) {
+			v[0] = v[2];
+			v[2] = 0;
 		}
-		for(int i=0; i<num; i++) {
-			A
+		else if(zero_cnt == 1) {
+			v[0] = v[1];
+			v[1] = 0;
+		}
+		else if(zero_cnt >1) {
+			int a = v[zero_cnt] ;
+			int b = v[zero_cnt+1];
+			v[0] = a;
+			v[1] = b;
+			v[zero_cnt] = 0;
+			v[zero_cnt+1] = 0;
 		}
 		
-	
-	
+		int mul = 1;
+		while(1) {
+			
+			sum += mul * v.back();
+			v.pop_back();
+			sum += mul * v.back();
+			v.pop_back();
+			
+			mul *= 10;
+			if(v.size() < 2) {
+				break;
+			}
+		}
+		
+		if(v.size() == 1) {
+			sum += mul * v.back();
+		}
+		
+		
 		cout << sum << endl;
-		 //arr를 오름차순 정렬
+		 
 		
 		
 	}
