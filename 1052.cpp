@@ -13,8 +13,12 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
 	
+	int N, K;
+	cin >> N >> K;
+	int arr[1000000]={0,};
+	arr[1] = N;
 	
 	
+	return 0;
 	
-	return 0;	
 }

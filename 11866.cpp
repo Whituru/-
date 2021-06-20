@@ -13,6 +13,19 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
 	
+	int N, K;
+	cin >> N >> K;
+	queue<int> q;
+	
+	for(int i=1; i<=N; i++){
+		q.push(i);
+	}
+	
+	while(q.size() >0){
+		while(q.size() > K){
+			q.pop(K);
+		}
+	}
 	
 	
 	
